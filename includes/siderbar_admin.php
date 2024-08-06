@@ -12,7 +12,7 @@
   <li class="nav-heading">Pages</li>
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="<?base_url?>languages.php">
+    <a class="nav-link collapsed" href="<?=base_url;?>languages.php">
       <i class="bi bi-newspaper"></i>
       <span>Langues</span>
     </a>

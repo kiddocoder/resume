@@ -4,7 +4,7 @@
 <!-- Vendor JS Files -->
 <script src="<?= base_url;?>vendor/apexcharts/apexcharts.min.js"></script>
 <script src="<?= base_url;?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="<?= base_url;?>vendor/chart.js/chart.min.js"></script>
+<script src="<?= base_url;?>vendor/echart/echart.min.js"></script>
 <script src="<?= base_url;?>vendor/echarts/echarts.min.js"></script>
 <script src="<?= base_url;?>vendor/quill/quill.min.js"></script>
 <script src="<?= base_url;?>vendor/simple-datatables/simple-datatables.js"></script>

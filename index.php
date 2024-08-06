@@ -1,3 +1,6 @@
+<?php
+ include("root.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,8 +12,8 @@
   <meta name="keywords" content="CV,Jonathan Zirhumana">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="<?=base_url;?>public/images/user.png" rel="icon">
+  <link href="<?=base_url;?>public/images/user.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -35,7 +38,7 @@
     <i class="header-toggle d-xl-none bi bi-list"></i>
 
     <div class="profile-img m-auto" style="width: 150px; height: 150px; border-radius: 50%;">
-      <img src="assets/img/me2.jpg" alt="" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+      <img src="<?=base_url;?>uploads/images/me-2.jpg" alt="" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
     </div>
 
     <a href="index.html" class="logo d-flex align-items-center justify-content-center">
@@ -66,7 +69,7 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
-      <img src="assets/img/me.jpg" alt="" data-aos="fade-in" class="">
+      <img src="<?=base_url;?>uploads/images/me.jpg" alt="" data-aos="fade-in" class="">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <h2>Jonathan Zirhumana</h2>
@@ -398,19 +401,19 @@
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
-  <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="./vendor/php-email-form/validate.js"></script>
-  <script src="./vendor/aos/aos.js"></script>
-  <script src="./vendor/typed.js/typed.umd.js"></script>
-  <script src="./vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="./vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="./vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="./vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="./vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="./vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="<?=base_url;?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?=base_url;?>vendor/php-email-form/validate.js"></script>
+  <script src="<?=base_url;?>vendor/aos/aos.js"></script>
+  <script src="<?=base_url;?>vendor/typed.js/typed.umd.js"></script>
+  <script src="<?=base_url;?>vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="<?=base_url;?>vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="<?=base_url;?>vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="<?=base_url;?>vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="<?=base_url;?>vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="<?=base_url;?>vendor/swiper/swiper-bundle.min.js"></script>
 
   <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="<?=base_url;?>public/js/main.js"></script>
 
 </body>
 

@@ -12,6 +12,13 @@
   <li class="nav-heading">Pages</li>
 
   <li class="nav-item">
+    <a class="nav-link collapsed" href="<?base_url?>languages.php">
+      <i class="bi bi-newspaper"></i>
+      <span>Langues</span>
+    </a>
+  </li><!-- End langues Page Nav -->
+
+  <li class="nav-item">
     <a class="nav-link collapsed" href="users-profile.html">
       <i class="bi bi-person"></i>
       <span>Profile</span>
@@ -28,7 +35,7 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="pages-contact.html">
       <i class="bi bi-envelope"></i>
-      <span>Contact</span>
+      <span>Réseaux sociaux</span>
     </a>
   </li><!-- End Contact Page Nav -->
 

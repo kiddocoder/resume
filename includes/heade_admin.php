@@ -5,12 +5,12 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Dashboard - NiceAdmin Bootstrap Template</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <meta  name="description" content="CV En ligne personalisé ">
+  <meta  name="keywords" content="CV , en ligne, personalisé ">
 
   <!-- Favicons -->
-  <link href="<?=base_url;?>img/favicon.png" rel="icon">
-  <link href="<?=base_url;?>img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="<?=base_url;?>public/images/dashboard.png" rel="icon">
+  <link href="<?=base_url;?>public/images/dashboard.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">

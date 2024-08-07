@@ -5,13 +5,15 @@ USE `cv_db`;
 
 -- Tables utilisateurs
 CREATE TABLE IF NOT EXISTS `utilisateurs` (
-    `uid` BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    `nom` VARCHAR(255) NOT NULL,
-    `prenom` VARCHAR(255) NOT NULL,
-    `photo` VARCHAR(255) DEFAULT 'user.jpg',
-    `email` VARCHAR(255) NOT NULL UNIQUE,
-    `mot_de_passe` VARCHAR(255) NOT NULL,
-    `role` VARCHAR(50),
+    `uid` bigint(20) UNSIGNED NOT NULL,
+    `nom` varchar(255) NOT NULL,
+    `prenom` varchar(255) NOT NULL,
+    `photo` varchar(255) DEFAULT 'user.jpg',
+    `email` varchar(255) NOT NULL,
+    `adress` text NOT NULL,
+    `intro` text NOT NULL,
+    `mot_de_passe` varchar(255) NOT NULL,
+    `role` varchar(50) DEFAULT NULL,
     `date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `date_modification` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

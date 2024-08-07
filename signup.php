@@ -23,20 +23,20 @@ include("./root.php");
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Creér Votre compte gratuitement</h2>
 
-              <form action="<?=base_url?>validators/signupValidate.php" method="POST" id="signup-form">
+              <form action="<?=base_url?>validators/signupValidate.php" method="POST" id="signup-for">
                 <div class="form-outline mb-4">
                   <label class="form-label" for="nom">Nom</label>
-                  <input type="text" id="nom" name="nom" class="form-control form-control-lg" placeholder="Doe" />
+                  <input type="text" id="nom" name="nom" class="form-control form-control-lg" placeholder="Doe" required/>
                 </div>
 
                 <div class="form-outline mb-4">
                   <label class="form-label" for="prenom">Prénom</label>
-                  <input type="text" id="prenom" name="prenom" class="form-control form-control-lg" placeholder="John" />
+                  <input type="text" id="prenom" name="prenom" class="form-control form-control-lg" placeholder="John" required />
                 </div>
 
                 <div class="form-outline mb-4">
                   <label for="profile">Photo de profile</label>
-                  <input type="file" id="profile" name="profile" accept="image/*" class="form-control form-control-lg" />
+                  <input type="file" id="profile" name="profile" accept="image/*" class="form-control form-control-lg" required/>
                 </div>
 
                 <div  class="form-outline mb-4">
@@ -51,22 +51,20 @@ include("./root.php");
                   <small id="pass1Error" class="form-text text-muted"></small>
                 </div>
 
-                <div data-mdb-input-init class="form-outline mb-4">
+                <div  class="form-outline mb-4">
                   <label class="form-label" for="mdp2">Confirmer le mot de passe</label>
                   <input type="password" id="mdp2" class="form-control form-control-lg" placeholder="********" />
                   <small id="passError" class="form-text text-muted"></small>
                 </div>
-
-                <div class="form-check d-flex justify-content-center mb-5">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-                  <label class="form-check-label" for="form2Example3g">
-                    J'accepte les <a href="#!" class="text-body"><u>Conditions d'utilisations</u></a>
-                  </label>
+                <div class="col-sm-10 mb-4">
+                  <label for="description" class="form-label">Qui est vous en bref !</label>
+                  <textarea class="form-control" name="intro" style="height: 100px;" placeholder="Qui est vous en bref !" required>
+                  </textarea>
                 </div>
 
                 <div class="d-flex justify-content-center">
                   <button  type="submit"
-                   class="btn btn-primary w-100 btn-lg gradient-custom-4 text-body">Register</button>
+                   class="btn btn-primary w-100 btn-lg gradient-custom-4 text-body">Créer Mon compte</button>
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">Vous avez deja un compte? <a href="<?=base_url?>login.php"

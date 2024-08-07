@@ -23,7 +23,7 @@ include("./root.php");
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Creér Votre compte gratuitement</h2>
 
-              <form action="<?=base_url?>validators/signupValidate.php" method="POST" id="signup-for">
+              <form enctype="multipart/form-data" action="<?=base_url?>validators/signupValidate.php" method="POST" id="signup-for">
                 <div class="form-outline mb-4">
                   <label class="form-label" for="nom">Nom</label>
                   <input type="text" id="nom" name="nom" class="form-control form-control-lg" placeholder="Doe" required/>

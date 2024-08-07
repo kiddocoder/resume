@@ -26,21 +26,12 @@ include("../../../root.php");
 					<label for="birth">Birthday</label>
                     <input type="date" name="birth" id="birth" required>
                 </div>
-                <div class="input_box">
-                    <label for="mng">Manager</label>
-                    <input type="text" name="mng" id="mng" placeholder="Manager" required>
-					<label for="chc">Coach</label>
-                    <input type="text" name="chc" id="chc" placeholder="Coach" required>
-                </div>
+
 				<div class="input_box">
 				    <label for="email">Email</label>
                     <input type="email" name="email" id="email" placeholder="Enter email" required>
 					<label for="phone">Number</label>
                     <input type="text" name="phone" id="phone" placeholder="+257 65101020" required>
-                </div>
-                <div class="input_box">
-                     <label for="file">Logo</label>
-                     <input type="file" class="form-control" name="file" id="file">
                 </div>
             </div>
             <div class="reg_btn">

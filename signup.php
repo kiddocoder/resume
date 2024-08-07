@@ -41,8 +41,14 @@ include("./root.php");
 
                 <div  class="form-outline mb-4">
                   <label class="form-label" for="email">Votre Adresse email</label>
-                  <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="janedoe@gmail.com" />
+                  <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="janedoe@gmail.com" required/>
                   <small id="emailError" class="form-text text-muted"></small>
+                </div>
+
+                <div  class="form-outline mb-4">
+                  <label class="form-label" for="adress">Adresse Physique</label>
+                  <input type="text" id="adress" name="adress" class="form-control form-control-lg" placeholder="RN10,Goma" required/>
+                  <small id="adressError" class="form-text text-muted"></small>
                 </div>
 
                 <div data-mdb-input-init class="form-outline mb-4">

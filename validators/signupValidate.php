@@ -1,11 +1,10 @@
 <?php
 // validators/signupValidate.php
 /* Ce fichier va s'occuper de la validation des authentifications d'un utilisateur */
- error_reporting(0); // cacher tous les erreurs non nécessaires
+error_reporting(0); // cacher tous les erreurs non nécessaires
 include("../vendor/autoload.php");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
-// header("content-type: application/json; charset=utf-8");
 include("../root.php");
 include(Root_path . "functions/query.func.php");
 include(Root_path . "functions/isUnique.func.php");
@@ -16,17 +15,16 @@ $db = new DB();
 $conn = $db->Connexion(); // connect to the Database
 
 // Vérification des champs requis
-if (!isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['mdp'], $_POST['intro'])) {
+if (!isset($_POST['nom'], $_POST['prenom'], $_POST['email'],$_POST['adress'], $_POST['mdp'], $_POST['intro'])) {
     $data['error']['both'] = 'Veuillez renseigner tous les champs.';
-    echo json_encode($_POST);
+    echo json_encode($data);
     exit;
 }
 
 $nom = trim($_POST['nom']);
 $prenom = trim($_POST['prenom']);
-$file = $_POST['profile'];
 $email = trim($_POST['email']);
-$adress =  trim($_POST['adress']);
+$adress = trim($_POST['adress']);
 $mdp = $_POST['mdp'];
 $intro = trim($_POST['intro']);
 
@@ -45,11 +43,41 @@ if (!isUnique($checkEmail, $email)) {
     exit;
 }
 
+// Validation du fichier de l'image
+$file = $_FILES['profile'];
+$allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+$maxFileSize = 2 * 1024 * 1024; // 2 Mo
+
+if (!in_array($file['type'], $allowedTypes)) {
+    $data['error']['file'] = "Type de fichier non autorisé. Veuillez télécharger une image.";
+    echo json_encode($data);
+    exit;
+}
+
+if ($file['size'] > $maxFileSize) {
+    $data['error']['file'] = "Le fichier est trop volumineux. La taille maximale autorisée est de 2 Mo.";
+    echo json_encode($data);
+    exit;
+}
+
+// Générer un nom de fichier unique
+$uniqueFileName = uniqid('profile_', true) . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
+$uploadDir = base_url.'uploads/images/';
+$uploadFilePath = $uploadDir . $uniqueFileName;
+
+// Déplacer le fichier téléchargé
+if (!move_uploaded_file($file['tmp_name'], $uploadFilePath)) {
+    $data['error']['file'] = "Erreur lors du téléchargement de l'image. Veuillez réessayer.";
+    echo json_encode($data);
+    exit;
+}
+
 // Hachage du mot de passe
 $hashedPassword = password_hash($mdp, PASSWORD_DEFAULT);
 
 // Préparation de la requête d'insertion
-$insertQuery = "INSERT INTO utilisateurs (nom, prenom,photo,email,adress, mot_de_passe, intro) VALUES (:nom,:prenom,:photo,:email,:adress,:mdp,:intro)";
+$insertQuery = "INSERT INTO utilisateurs (nom, prenom, photo, email, adress, mot_de_passe, intro) VALUES (:nom,:prenom,:photo,:email,:adress,:mdp,:intro)";
+
 $values = [
       'nom' => $nom,
       'prenom'=> $prenom,
@@ -70,3 +98,4 @@ if ($stmt) {
 
 // Retourner la réponse JSON
 echo json_encode($data);
+?>

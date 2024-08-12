@@ -5,7 +5,7 @@ USE `cv_db`;
 
 -- Tables utilisateurs
 CREATE TABLE IF NOT EXISTS `utilisateurs` (
-    `uid` bigint(20) UNSIGNED NOT NULL,
+    `uid` BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `nom` varchar(255) NOT NULL,
     `prenom` varchar(255) NOT NULL,
     `photo` varchar(255) DEFAULT 'user.jpg',
@@ -116,13 +116,13 @@ CREATE TABLE IF NOT EXISTS `roles` (
 
 -- Tables utilisateur_role
 CREATE TABLE IF NOT EXISTS `utilisateur_role` (
+    `urid` BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `uid` BIGINT(20) UNSIGNED NOT NULL,
     `role_id` BIGINT(20) UNSIGNED NOT NULL,
     `date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `date_modification` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`uid`) REFERENCES `utilisateurs`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`role_id`) REFERENCES `roles`(`role_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (`uid`, `role_id`)
+    FOREIGN KEY (`role_id`) REFERENCES `roles`(`role_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Tables educations
@@ -141,13 +141,13 @@ CREATE TABLE IF NOT EXISTS `educations` (
 
 -- Tables utilisateur_education
 CREATE TABLE IF NOT EXISTS `utilisateur_education` (
+    `ueid` BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `uid` BIGINT(20) UNSIGNED NOT NULL,
     `eid` BIGINT(20) UNSIGNED NOT NULL,
     `date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `date_modification` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`uid`) REFERENCES `utilisateurs`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`eid`) REFERENCES `educations`(`eid`) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (`uid`, `eid`)
+    FOREIGN KEY (`eid`) REFERENCES `educations`(`eid`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Tables activites
@@ -166,13 +166,13 @@ CREATE TABLE IF NOT EXISTS `activites` (
 
 -- Tables utilisateur_activite
 CREATE TABLE IF NOT EXISTS `utilisateur_activite` (
+    `uaid` BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `uid` BIGINT(20) UNSIGNED NOT NULL,
     `aid` BIGINT(20) UNSIGNED NOT NULL,
     `date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `date_modification` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`uid`) REFERENCES `utilisateurs`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`aid`) REFERENCES `activites`(`aid`) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (`uid`, `aid`)
+    FOREIGN KEY (`aid`) REFERENCES `activites`(`aid`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Tables certifications
@@ -191,13 +191,13 @@ CREATE TABLE IF NOT EXISTS `certifications` (
 
 -- Tables utilisateur_certification
 CREATE TABLE IF NOT EXISTS `utilisateur_certification` (
+    `ucid` BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `uid` BIGINT(20) UNSIGNED NOT NULL,
     `cid` BIGINT(20) UNSIGNED NOT NULL,
     `date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `date_modification` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`uid`) REFERENCES `utilisateurs`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`cid`) REFERENCES `certifications`(`cid`) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (`uid`, `cid`)
+    FOREIGN KEY (`cid`) REFERENCES `certifications`(`cid`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Tables recommandations
@@ -214,18 +214,18 @@ CREATE TABLE IF NOT EXISTS `recommandations` (
 
 -- Tables utilisateur_recommandation
 CREATE TABLE IF NOT EXISTS `utilisateur_recommandation` (
+    `urecomid` BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `uid` BIGINT(20) UNSIGNED NOT NULL,
     `rid` BIGINT(20) UNSIGNED NOT NULL,
     `date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `date_modification` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`uid`) REFERENCES `utilisateurs`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`rid`) REFERENCES `recommandations`(`rid`) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (`uid`, `rid`)
+    FOREIGN KEY (`rid`) REFERENCES `recommandations`(`rid`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Tables objectifs
 CREATE TABLE IF NOT EXISTS `objectifs` (
-    `objectId` BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `objectifid` BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `uid` BIGINT(20) UNSIGNED NOT NULL,
     `objectif` TEXT,
     `date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -236,12 +236,11 @@ CREATE TABLE IF NOT EXISTS `objectifs` (
 -- Tables utilisateur_objectif
 CREATE TABLE IF NOT EXISTS `utilisateur_objectif` (
     `uid` BIGINT(20) UNSIGNED NOT NULL,
-    `objectif_id` BIGINT(20) UNSIGNED NOT NULL,
+    `objectifid` BIGINT(20) UNSIGNED NOT NULL,
     `date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `date_modification` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`uid`) REFERENCES `utilisateurs`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`objectif_id`) REFERENCES `objectifs`(`objectId`) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (`uid`, `objectif_id`)
+    FOREIGN KEY (`objectifid`) REFERENCES `objectifs`(`objectifid`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Tables type_reseau
@@ -285,22 +284,22 @@ CREATE TABLE IF NOT EXISTS `niveaux_competence` (
 
 -- Tables utilisateur_competence
 CREATE TABLE IF NOT EXISTS `utilisateur_competence` (
+    `ucompid` BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `uid` BIGINT(20) UNSIGNED NOT NULL,
     `compid` BIGINT(20) UNSIGNED NOT NULL,
     `date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `date_modification` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`uid`) REFERENCES `utilisateurs`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`compid`) REFERENCES `competences`(`compid`) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (`uid`, `compid`)
+    FOREIGN KEY (`compid`) REFERENCES `competences`(`compid`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Tables utilisateur_langue
 CREATE TABLE IF NOT EXISTS `utilisateur_langue` (
+    `ulangid` BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `uid` BIGINT(20) UNSIGNED NOT NULL,
     `lid` BIGINT(20) UNSIGNED NOT NULL,
     `date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `date_modification` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`uid`) REFERENCES `utilisateurs`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`lid`) REFERENCES `langues`(`lid`) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (`uid`, `lid`)
+    FOREIGN KEY (`lid`) REFERENCES `langues`(`lid`) ON DELETE CASCADE ON UPDATE CASCADE
 );

@@ -1,209 +1,289 @@
 <?php
 include("../root.php");
+include(Root_path."functions/main-functions.php");
 include(Root_path."includes/heade_admin.php");
 include(Root_path."includes/header_admin.php");
 include(Root_path."includes/siderbar_admin.php");
+$user = getUser();
 ?>
 
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Dashboard</h1>
+      <h1><?= $user->nom ?> <?= $user->prenom ?></h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="<?=base_url;?>dashboard.php">Home</a></li>
+          <li class="breadcrumb-item"><a href="index.php?page=cv">MON CV</a></li>
           <li class="breadcrumb-item active">Dashboard</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <section class="section dashboard">
-      <div>
+    <section class="section row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Default Tabs</h5>
 
-        <!-- Left side columns -->
-        <div class="col-lg">
-          <div class="row">
+              <div class="tab-content pt-2" id="myTabContent">
+                <!-- Identités -->
+                <div class="  active show active" >
+                  <form method="post"  >
+                    <h2 class="card-title text-center"> Identités</h2>
 
-            <!-- Sales Card -->
-            <div class="col-xxl-4 col-md-6">
-              <div class="card info-card sales-card">
-
-                <div class="card-body">
-                  <h5 class="card-title">Languages</h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-cart"></i>
+                    <div class="row mb-3">
+                      <label for="inputText" class="col-sm-2 col-form-label">Description</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="description" placeholder="Description de sois dans deux lignes" class="form-control">
+                      </div>
                     </div>
-                    <div class="ps-3">
-                      <h6>145</h6>
-                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
+                    <div class="row mb-3">
+                      <label for="inputNumber" class="col-sm-2 col-form-label">Numero</label>
+                      <div class="col-sm-10">
+                        <input name="numero" type="number" class="form-control">
+                      </div>
                     </div>
+                    <div class="row mb-3">
+                      <label for="inputDate" class="col-sm-2 col-form-label">Date de naissance</label>
+                      <div class="col-sm-10">
+                        <input name="birthday" type="date" class="form-control">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="inputTime" class="col-sm-2 col-form-label">Localisation(pays)</label>
+                      <div class="col-sm-10">
+                        <input name="country" type="text" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="inputTime" class="col-sm-2 col-form-label">Grade</label>
+                      <div class="col-sm-10">
+                        <input name="grade" type="text" placeholder="Niveau d'etude" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label class="col-sm-2 col-form-label">Validation</label>
+                      <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                      </div>
+                    </div>
+
+                  </form>
                   </div>
-                </div>
+                  <!-- Statatique personnel -->
+                  <div class="active"
+                      <form action="" method="post">
+                      <h2 class="card-title text-center"> Statistiques personnel </h2>
+                      <div class="row mb-3">
+                        <label for="inputTime" class="col-sm-2 col-form-label">Recommandations</label>
+                        <div class="col-sm-10">
+                          <input type="number" name="recommandation" placeholder="Nombre de Recommandations déja eu" class="form-control">
+                        </div>
+                      </div>
 
-              </div>
-            </div><!-- End Sales Card -->
+                      <div class="row mb-3">
+                        <label for="inputTime" class="col-sm-2 col-form-label">Projects</label>
+                        <div class="col-sm-10">
+                          <input type="number"projects name="projects" placeholder="Nombre de projects déja realisé" class="form-control">
+                        </div>
+                      </div>
 
-            <!--  Card -->
-            <div class="col-xxl-4 col-md-6">
-              <div class="card info-card competences-card">
-                <div class="card-body">
-                  <h5 class="card-title">Competences</h5>
+                      <div class="row mb-3">
+                        <label for="inputTime" class="col-sm-2 col-form-label">Experiences</label>
+                        <div class="col-sm-10">
+                          <input type="number" name="experiences" placeholder="Nombre de domaines sur le quel tu as l'experience" class="form-control">
+                        </div>
+                      </div>
 
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
+                      <div class="row mb-3">
+                        <label for="inputTime" class="col-sm-2 col-form-label">Formations</label>
+                        <div class="col-sm-10">
+                          <input type="number" name="formation" placeholder="Nombre de formation deja participé" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Validation</label>
+                        <div class="col-sm-10">
+                          <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </div>
+                      </div>
+                    </form>
                     </div>
-                    <div class="ps-3">
-                      <h6>20</h6>
-                      <span class="text-success small pt-1 fw-bold">88%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
+                    <!-- Compétences -->
+                    <div class="  active" >
+                    <form action="" method="post">
+                    <h2 class="card-title text-center"> Compétences Languistique</h2>
+                    <div class="row mb-3">
+                      <label for="inputTime" class="col-sm-2 col-form-label">Langue</label>
+                      <div class="col-sm-10">
+                        <select class="form-control" name="language">
+                          <option value="" selected desabled>Quel ton langue parlé?</option>
+                          <option value="FranÇais">FranÇais</option>
+                          <option value="Anglais">Anglais</option>
+                          <option value="Swahili">Swahili</option>
+                        </select>
+                      </div>
                     </div>
+
+                    <div class="row mb-3">
+                      <label for="inputTime" class="col-sm-2 col-form-label">Niveau sur 100</label>
+                      <div class="col-sm-10">
+                        <input type="number" name="niveau" min="1" max="100" placeholder="Niveau 50 ou 80" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                    <label for="other" class="col-sm-2 col-form-label">Autres langues parlé(e)</label>
+                    <div class="col-sm-10">
+                        <input type="number" name="other" min="1" max="100" placeholder="Niveau : Autre langue sur 100 ex 50 ou 80" class="form-control">
+                    </div>
+
+                    <div class="row mb-3">
+                      <label class="col-sm-2 col-form-label">Validation</label>
+                      <div class="col-sm-10">
+                        <button type="submit"  class="btn btn-primary">Envoyer</button>
+                      </div>
+                    </div>
+                  </form>
                   </div>
-                </div>
 
-              </div>
-            </div><!-- End  Card -->
+                  <!-- Statatique personnel  -->
 
-            <!-- Experiences Card -->
-            <div class="col-xxl-4 col-xl-12">
+                  <div class="  active" >
+                    <form action="" method="post">
+                      <h2 class="card-title text-center"> Compétences Professionel </h>
 
-              <div class="card info-card Experiences-card">
-                <div class="card-body">
-                  <h5 class="card-title">Experiences</h5>
+                      <div class="row mb-3">
+                        <label for="inputTime" class="col-sm-2 col-form-label">Quelle votre competences professionels?</label>
+                        <div class="col-sm-10">
+                          <select class="form-control" required>
+                            <option value="" selected desabled> Votre competence ?</option>
+                            <option value="PROGRAMMATION WEB">PROGRAMMATION WEB</option>
+                            <option value="MICROSOFT OFFICE">MICROSOFT OFFICE</option>
+                            <option value="PHOTOSHOP">PHOTOSHOP</option>
+                          </select>
+                        </div>
+                      </div>
 
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-people"></i>
+                      <div class="row mb-3">
+                        <label for="other" class="col-sm-2 col-form-label"> Votre niveau?</label>
+                        <div class="col-sm-10">
+                          <input type="number" name="niveau" placeholder=" Niveau  sur 100 ex 50 ou 80" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Validation</label>
+                        <div class="col-sm-10">
+                          <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                      <!-- EDUCATION  -->
+                  <div class="  active" >
+                    <form action="" method="post">
+                    <h2 class="card-title text-center">EDUCATION</h2>
+                    <div class="row mb-3">
+                      <label for="inputTime" class="col-sm-2 col-form-label">Formation</label>
+                      <div class="col-sm-10">
+                        <input type="text" placeholder="Nom de la formation" class="form-control">
+                      </div>
                     </div>
-                    <div class="ps-3">
-                      <h6>1244</h6>
-                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
-
+                    <div class="row mb-3">
+                      <label for="inputTime" class="col-sm-2 col-form-label">Date de Début</label>
+                      <div class="col-sm-10">
+                        <input type="date" name="date_debut" placeholder="EX: 2005-02-09" class="form-control">
+                      </div>
                     </div>
+
+                    <div class="row mb-3">
+                      <label for="inputTime" class="col-sm-2 col-form-label">Date de Début</label>
+                      <div class="col-sm-10">
+                        <input type="date" name="date_fin" placeholder="EX:2005-02-09" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="inputTime" class="col-sm-2 col-form-label">Etablissement/Université</label>
+                      <div class="col-sm-10">
+                        <input type="date" name="etablissement" placeholder="Nom de l'etablissement ou université frequenté" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="inputTime" class="col-sm-2 col-form-label">Diplome obtenu</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="diplome" placeholder="Le diplome obtenu" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="inputPassword" class="col-sm-2 col-form-label"> Formation educative</label>
+                      <div class="col-sm-10">
+                        <textarea class="form-control" name="description" placeholder="Toute la description sur la formation faite en education  " style="height: 100px"></textarea>
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label class="col-sm-2 col-form-label">Validation</label>
+                      <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                      </div>
+                    </div>
+                  </form>
                   </div>
 
-                </div>
-              </div>
+                <div class="  active" >
+                  <form action="" method="post">
 
-            </div><!-- End Experiences Card -->
+                    <h2 class="card-title text-center"> Experience Professional</h2>
+                    <div class="row mb-3">
+                      <label for="inputTime" class="col-sm-2 col-form-label"> Formation</label>
+                      <div class="col-sm-10">
+                        <input type="text" placeholder="Nom de la formation" class="form-control">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="inputTime" class="col-sm-2 col-form-label"> Année</label>
+                      <div class="col-sm-10">
+                        <input type="text" placeholder="EX: 2002-2005" class="form-control">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="inputPassword" class="col-sm-2 col-form-label"> Formation educative</label>
+                      <div class="col-sm-10">
+                        <textarea class="form-control" placeholder="Toute la description sur la formation faite en education  " style="height: 100px"></textarea>
+                      </div>
+                    </div>
 
-            <!-- Reports -->
-            <div class="col-12">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Reports <span>/Today</span></h5>
-
-                  <!-- Line Chart -->
-                  <div id="reportsChart"></div>
-
-                  <script>
-                    document.addEventListener("DOMContentLoaded", () => {
-                      new ApexCharts(document.querySelector("#reportsChart"), {
-                        series: [{
-                          name: 'Languages',
-                          data: [31, 40, 28, 51, 42, 82, 56],
-                        }, {
-                          name: 'Competences',
-                          data: [11, 32, 45, 32, 34, 52, 41]
-                        }, {
-                          name: 'Experiences',
-                          data: [15, 11, 32, 18, 9, 24, 11]
-                        }],
-                        chart: {
-                          height: 350,
-                          type: 'area',
-                          toolbar: {
-                            show: false
-                          },
-                        },
-                        markers: {
-                          size: 4
-                        },
-                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                        fill: {
-                          type: "gradient",
-                          gradient: {
-                            shadeIntensity: 1,
-                            opacityFrom: 0.3,
-                            opacityTo: 0.4,
-                            stops: [0, 90, 100]
-                          }
-                        },
-                        dataLabels: {
-                          enabled: false
-                        },
-                        stroke: {
-                          curve: 'smooth',
-                          width: 2
-                        },
-                        xaxis: {
-                          type: 'datetime',
-                          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                        },
-                        tooltip: {
-                          x: {
-                            format: 'dd/MM/yy HH:mm'
-                          },
-                        }
-                      }).render();
-                    });
-                  </script>
-                  <!-- End Line Chart -->
-
+                    <div class="row mb-3">
+                      <label class="col-sm-2 col-form-label">Validation</label>
+                      <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                      </div>
+                    </div>
+                  </form>
                 </div>
 
-              </div>
-            </div><!-- End Reports -->
-
-            <!-- Recent Sales -->
-            <div class="col-12">
-              <div class="card recent-sales overflow-auto">
-                <div class="card-body">
-                  <h5 class="card-title">Recent Languages</h5>
-
-                  <table class="table table-borderless datatable">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">languages</th>
-                        <th scope="col">Niveau(%)</th>
-                        <th scope="col">Delete</th>
-                        <th scope="col">Update</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>French</td>
-                        <td><a href="#" class="text-primary">90</a></td>
-                        <td><button>X</button></td>
-                        <td><span class="badge bg-success">Update</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>English</td>
-                        <td><a href="#" class="text-primary">50</a></td>
-                        <td><button>X</button></td>
-                        <td><span class="badge bg-success">Update</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                </div>
 
               </div>
-            </div><!-- End Recent Sales -->
 
+              <!-- End Default Tabs -->
+
+            </div>
           </div>
-        </div><!-- End Left side columns -->
+
+        </div>
+
       </div>
     </section>
 
   </main>
 
-<?php include(Root_path."includes/js-include_admin.php"); ?>
+<?php include("includes/js-include_admin.php"); ?>
 <!-- ======= Footer ======= -->
-<?php include(Root_path."includes/footer.php"); ?>
+<?php include("includes/footer.php"); ?>

@@ -4,6 +4,7 @@
  include(Root_path."functions/main-functions.php");
  include_once(Root_path."functions/identities.func.php");
  include_once(Root_path."functions/languages.func.php");
+ include_once(Root_path."functions/statistics.func.php");
 
  use App\classes\Session;
 
@@ -15,6 +16,8 @@
  }
 $userdata = getUser();
 $identities = getUserIdentity($_SESSION['uid']);
+$stats = getUserStats($_SESSION['uid']);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,6 +76,7 @@ $identities = getUserIdentity($_SESSION['uid']);
       <ul>
         <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
         <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
+        <li><a href="./admin/dashboard.php"><i class="bi bi-person navicon"></i> Dashboard</a></li>
         <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
         <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
       </ul>
@@ -113,7 +117,7 @@ $identities = getUserIdentity($_SESSION['uid']);
               <div class="col-lg-6">
                 <ul>
                   <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>1 May 1995</span></li>
-                  <!-- <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.example.com</span></li> -->
+
                   <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+123 456 7890</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>New York, USA</span></li>
                 </ul>
@@ -123,7 +127,6 @@ $identities = getUserIdentity($_SESSION['uid']);
                   <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>30</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>email@example.com</span></li>
-                  <!-- <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li> -->
                 </ul>
               </div>
             </div>
@@ -144,7 +147,7 @@ $identities = getUserIdentity($_SESSION['uid']);
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?= $stats['total_recommandation'];?>" data-purecounter-duration="1" class="purecounter"></span>
               <p><strong>Recommandations</strong></p>
             </div>
           </div><!-- End Stats Item -->
@@ -152,7 +155,7 @@ $identities = getUserIdentity($_SESSION['uid']);
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?= $stats['total_project']?>" data-purecounter-duration="1" class="purecounter"></span>
               <p><strong>Projects</strong></p>
             </div>
           </div><!-- End Stats Item -->
@@ -160,7 +163,7 @@ $identities = getUserIdentity($_SESSION['uid']);
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?= $stats['total_experiences']?>" data-purecounter-duration="1" class="purecounter"></span>
               <p><strong>Experiences</strong></p>
             </div>
           </div><!-- End Stats Item -->
@@ -168,7 +171,7 @@ $identities = getUserIdentity($_SESSION['uid']);
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?= $stats['total_formation']?>" data-purecounter-duration="1" class="purecounter"></span>
               <p><strong>Formations</strong></p>
             </div>
           </div><!-- End Stats Item -->

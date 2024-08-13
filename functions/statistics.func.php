@@ -1,26 +1,5 @@
 <?php
-/*  be sure that the $db global variable is included as well*/
-
-/**
-  * @return object
-*/
-function get_user(){
-    global $db;
-    $req = $db->query("
-        SELECT  *
-        FROM utilisateurs
-        WHERE email ='{$_SESSION['user']}'
-    ");
-
-    $result = $req->fetchObject();
-    return $result;
-}
-
-
-// userID from session
-
-$userdata = get_user();
-$userID = $userdata->uid;
+/*  be sure that the $dbconnect global variable is included as well*/
 
 
 ###############################################
@@ -34,13 +13,15 @@ $userID = $userdata->uid;
  * @param array $data from post
  * @return bool
  */
+$userID = $_SESSION['uid'];
+
 function insertStats($data) {
-    global $db;
+    global $dbconnect;
     global $userID;
 
     $sql = "INSERT INTO `statistics`(`uid`, `recommandation`, `project`, `experience`, `formations`) VALUES (:id,:recommandation,:project,:experience,:formations)";
 
-    $stmt = $db->prepare($sql);
+    $stmt = $dbconnect->prepare($sql);
 
     return $stmt->execute([
       ':id' =>$userID,
@@ -66,10 +47,10 @@ function insertStats($data) {
  * @return bool
  */
 function updateStats($id, $data) {
-    global $db;
+    global $dbconnect;
 
     $sql = "UPDATE `statistics` SET `recommandation`=':recommandation,`project`=:project,`experience`=:experience,`formations`=:formation WHERE  uid = :id";
-    $stmt = $db->prepare($sql);
+    $stmt = $dbconnect->prepare($sql);
 
     return $stmt->execute([
       ':id' =>$id,
@@ -94,10 +75,10 @@ function updateStats($id, $data) {
  * @return bool
  */
 function deleteStats($id) {
-    global $db;
+    global $dbconnect;
 
     $sql = "DELETE FROM statistics WHERE uid = :id";
-    $stmt = $db->prepare($sql);
+    $stmt = $dbconnect->prepare($sql);
 
     return $stmt->execute([':id' => $id]);
 }
@@ -115,15 +96,43 @@ function deleteStats($id) {
  * @return array
  */
 function getUserStats($id) {
-    global $db;
+    global $dbconnect;
 
-    $sql = "SELECT *
-    FROM statistics t
-    LEFT JOIN utilisateurs u ON u.uid = t.uid
-    WHERE t.uid = :id";
-    $stmt = $db->prepare($sql);
-    $stmt->execute([':id'=>$id]);
-   return $stmt->fetch(PDO::FETCH_ASSOC);
+    // Requête SQL pour récupérer les statistiques de l'utilisateur
+    $sql = "
+        SELECT
+            COALESCE(SUM(t.recommandation), 0) AS total_recommandation,
+            COALESCE(SUM(t.project), 0) AS total_project,
+            COALESCE(SUM(t.experience), 0) AS total_experiences,
+            COALESCE(SUM(t.formations), 0) AS total_formation
+        FROM statistics t
+        LEFT JOIN utilisateurs u ON u.uid = t.uid
+        WHERE u.uid = :id
+    ";
+
+    try {
+        // Préparation et exécution de la requête
+        $stmt = $dbconnect->prepare($sql);
+        $stmt->execute([':id' => $id]);
+
+        // Récupération des résultats
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Vérification si des résultats ont été trouvés
+        if ($result) {
+            return $result;
+        } else {
+            // Retourne un tableau vide si aucun résultat
+            return [
+                'total_recommandation' => 0,
+                'total_project' => 0,
+                'total_experiences' => 0,
+                'total_formation' => 0
+            ];
+        }
+    } catch (PDOException $e) {
+        error_log("Erreur lors de la récupération des statistiques de l'utilisateur : " . $e->getMessage());
+        return null; // erreurs
+    }
 }
-
 ?>

@@ -4,9 +4,10 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Dashboard</title>
   <meta  name="description" content="CV En ligne personalisé ">
   <meta  name="keywords" content="CV , en ligne, personalisé ">
+
 
   <!-- Favicons -->
   <link href="<?=base_url;?>public/images/dashboard.png" rel="icon">

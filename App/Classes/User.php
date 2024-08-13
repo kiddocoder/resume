@@ -57,7 +57,7 @@ class User {
                 $this->cookies->setCookie('uid', $user['uid'], 3600 * 24 * 60);
                 $this->cookies->setCookie('email', $user['email'], 3600 * 24 * 60);
                 $this->cookies->setCookie('photo', $user['photo'], 3600 * 24 * 60);
-                echo "<script>alert('Connexion réussie');window.location.href='home.php'</script>";
+                echo "<script>alert('Connexion réussie');window.location.href='index.php'</script>";
             } else {
                 $data['errorlogin']['message'] = 'Mot de passe incorrect.';
             }

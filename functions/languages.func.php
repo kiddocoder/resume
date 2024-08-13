@@ -1,5 +1,5 @@
 <?php
-/*  be sure that the $db global variable is included as well*/
+/*  be sure that the $dbconnect global variable is included as well*/
 
 
 ###############################################
@@ -14,11 +14,11 @@
  * @return bool
  */
 function insertLanguage($data) {
-    global $db;
+    global $dbconnect;
 
     $sql = "INSERT INTO `langues` (`langue`) VALUES (:language)";
 
-    $stmt = $db->prepare($sql);
+    $stmt = $dbconnect->prepare($sql);
 
     return $stmt->execute([':language' => $data['language']]);
 }
@@ -32,12 +32,12 @@ function insertLanguage($data) {
  */
 $userID = $_SESSION['uid'];
 function giveUserlang($data) {
-    global $db;
+    global $dbconnect;
     global $userID;
 
     $sql = "INSERT INTO `utilisateur_langue` (`uid`,`lid`,`niveau`) VALUES (:id,:language,:niveau)";
 
-    $stmt = $db->prepare($sql);
+    $stmt = $dbconnect->prepare($sql);
 
     return $stmt->execute([
         ':id' => $userID,
@@ -62,10 +62,10 @@ function giveUserlang($data) {
  * @return bool
  */
 function updateLanguage($id, $data) {
-    global $db;
+    global $dbconnect;
 
     $sql = "UPDATE langues SET `langue` =:language WHERE lid = :id";
-    $stmt = $db->prepare($sql);
+    $stmt = $dbconnect->prepare($sql);
 
     return $stmt->execute([
         ':language' => $data['language'],
@@ -87,10 +87,10 @@ function updateLanguage($id, $data) {
  * @return bool
  */
 function deleteLanguage($id) {
-    global $db;
+    global $dbconnect;
 
     $sql = "DELETE FROM langues WHERE lid = :id";
-    $stmt = $db->prepare($sql);
+    $stmt = $dbconnect->prepare($sql);
 
     return $stmt->execute([':id' => $id]);
 }
@@ -108,13 +108,13 @@ function deleteLanguage($id) {
  * @return array
  */
 function getUserLanguage($id) {
-    global $db;
+    global $dbconnect;
 
     $sql = "SELECT * FROM utilisateurs u
-     INNER JOIN utilisateur_langue ul ON ul.`uid` = l.`uid`
+     INNER JOIN utilisateur_langue ul ON ul.`uid` = u.`uid`
      INNER JOIN langues l ON l.`lid` = ul.`lid`
      WHERE ul.`uid` = :id";
-    $stmt = $db->prepare($sql);
+    $stmt = $dbconnect->prepare($sql);
     $stmt->execute([':id'=>$id]);
    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
@@ -126,10 +126,10 @@ function getUserLanguage($id) {
  * @return array
  */
 function getAllLanguages() {
-    global $db;
+    global $dbconnect;
 
     $sql = "SELECT * FROM langues";
-    $stmt = $db->prepare($sql);
+    $stmt = $dbconnect->prepare($sql);
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }

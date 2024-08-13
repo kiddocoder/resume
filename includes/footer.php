@@ -1,3 +1,10 @@
+<!-- Datatable js code -->
+<script>
+        $(document).ready(function () {
+            $('#data_tables').DataTable();
+        });
+</script>
+
 <footer id="footer" class="footer">
     <div class="copyright">
     &copy; Copyright <strong><span>Dashboard</span></strong>. Tout droit reservé

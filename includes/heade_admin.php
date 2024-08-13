@@ -27,5 +27,12 @@
   <link href="<?=base_url;?>vendor/simple-datatables/style.css" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="<?=base_url;?>public/css/dashboard.css" rel="stylesheet">
+
+    <!-- Databale configurations -->
+  <link href="<?=base_url;?>vendor/datatable/jquery.dataTables.min.css" rel="stylesheet">
+  <script src="<?=base_url;?>vendor/datatable/jquery-3.6.0.js"></script>
+  <script src="<?=base_url;?>vendor/datatable/datatables.css"></script>
+  <script src="<?=base_url;?>vendor/datatable/datatables.js"></script>
+  <script src="<?=base_url;?>vendor/datatable/dataTables.bootstrap5"></script>
 </head>
 <body>

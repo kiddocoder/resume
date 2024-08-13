@@ -26,54 +26,8 @@ $user = getUser();
               <h5 class="card-title">Default Tabs</h5>
 
               <div class="tab-content pt-2" id="myTabContent">
-                <!-- Identités -->
-                <div class="  active show active" >
-                  <form method="post"  >
-                    <h2 class="card-title text-center"> Identités</h2>
-
-                    <div class="row mb-3">
-                      <label for="inputText" class="col-sm-2 col-form-label">Description</label>
-                      <div class="col-sm-10">
-                        <input type="text" name="description" placeholder="Description de sois dans deux lignes" class="form-control">
-                      </div>
-                    </div>
-                    <div class="row mb-3">
-                      <label for="inputNumber" class="col-sm-2 col-form-label">Numero</label>
-                      <div class="col-sm-10">
-                        <input name="numero" type="number" class="form-control">
-                      </div>
-                    </div>
-                    <div class="row mb-3">
-                      <label for="inputDate" class="col-sm-2 col-form-label">Date de naissance</label>
-                      <div class="col-sm-10">
-                        <input name="birthday" type="date" class="form-control">
-                      </div>
-                    </div>
-                    <div class="row mb-3">
-                      <label for="inputTime" class="col-sm-2 col-form-label">Localisation(pays)</label>
-                      <div class="col-sm-10">
-                        <input name="country" type="text" class="form-control">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="inputTime" class="col-sm-2 col-form-label">Grade</label>
-                      <div class="col-sm-10">
-                        <input name="grade" type="text" placeholder="Niveau d'etude" class="form-control">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label class="col-sm-2 col-form-label">Validation</label>
-                      <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">Envoyer</button>
-                      </div>
-                    </div>
-
-                  </form>
-                  </div>
                   <!-- Statatique personnel -->
-                  <div class="active"
+                  <div class="active">
                       <form action="" method="post">
                       <h2 class="card-title text-center"> Statistiques personnel </h2>
                       <div class="row mb-3">
@@ -284,6 +238,6 @@ $user = getUser();
 
   </main>
 
-<?php include("includes/js-include_admin.php"); ?>
+<?php include(Root_path."includes/js-include_admin.php"); ?>
 <!-- ======= Footer ======= -->
-<?php include("includes/footer.php"); ?>
+<?php include(Root_path."includes/footer.php"); ?>

@@ -1,5 +1,5 @@
 <?php
-include("root.php");
+include("./root.php");
 include(Root_path."includes/heade_admin.php");
 include(Root_path."includes/header_admin.php");
 include(Root_path."includes/siderbar_admin.php");

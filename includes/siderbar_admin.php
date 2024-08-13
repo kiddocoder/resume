@@ -3,7 +3,7 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
   <li class="nav-item">
-    <a class="nav-link " href="index.php?page=dashboard">
+    <a class="nav-link " href="<?=base_url?>admin/dashboard.php">
       <i class="bi bi-grid"></i>
       <span>Dashboard</span>
     </a>
@@ -12,21 +12,21 @@
   <li class="nav-heading">Pages</li>
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="index.php?page=languages">
+    <a class="nav-link collapsed" href="<?=base_url?>admin/languages.php">
       <i class="bi bi-newspaper"></i>
       <span>Langues</span>
     </a>
   </li><!-- End langues Page Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="index.php?page=identities">
+    <a class="nav-link collapsed" href="<?=base_url?>admin/identities.php">
       <i class="bi bi-person"></i>
       <span>Mes identifications</span>
     </a>
   </li><!-- End Page Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="index.php?page=cv">
+    <a class="nav-link collapsed" href="../cv.php">
       <i class="bi bi-person"></i>
       <span>Mon CV</span>
     </a>

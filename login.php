@@ -5,12 +5,12 @@ include(Root_path."vendor/autoload.php");
 use App\classes\User;
 
 // check user login informations
-
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
   $user = new User();
   $errors = $user->checkUser($_POST['email'],$_POST['mdp']);
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -19,8 +19,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
-    <!-- Link toastify css cdn -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>CV en ligne Personalisé | Page Login</title>
   </head>
   <body>
@@ -37,11 +35,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                   <div class="card-body p-4 p-lg-5 text-black">
 
 
-                  <?php if(isset($errors['errorLogin'])){?>
-                    <div class="card gb-danger mb-2">
+                  <?php if(isset($errors['errorlogin'])){?>
+                    <div class="card gb-danger mb-2" id="error_login">
                       <div class="card-content gb-danger text-center p-2">
                         <h6 class="gb-danger text-danger" >
-                          <?php echo(['errorLogin']['message']);?>
+                          <?php echo($errors['errorlogin']['message']);?>
                         </h6>
                       </div>
                     </div>
@@ -63,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                       <div class="pt-1 mb-4">
                         <button name="connexion" type="submit" class="btn btn-primary btn-lg w-100">Login</button>
                       </div>
-                      <p class="mb-5 pb-lg-2" style="color: #393f81;">J'ai pas de compte ? <a href="index.php?page=signup"
+                      <p class="mb-5 pb-lg-2" style="color: #393f81;">J'ai pas de compte ? <a href="signup.php"
                         style="color: #393f81;">Inscription</a>
                       </p>
                     </form>
@@ -76,5 +74,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script>
+      let loginError = document.getElementById("error_login");
+
+      if(loginError) setTimeout(() => {
+        loginError.style.display = 'none';
+      }, 5000);
+    </script>
   </body>
 </html>

@@ -1,6 +1,17 @@
 <?php
 include("./root.php");
+include(Root_path."vendor/autoload.php");
+
+use App\classes\User;
+
+// hundle check before inserting into DB
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+  $user = new User();
+  $errors = $user->insertUser($_POST);
+}
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,10 +31,23 @@ include("./root.php");
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card" style="border-radius: 15px;">
+
+                  <?php if(isset($errors['errorsignup'])){?>
+                    <div class="card gb-danger mb-2" id="error_login">
+                      <div class="card-content gb-danger text-center p-2">
+                        <h6 class="gb-danger text-danger" >
+                          <?php echo($errors['errorsignup']['message']);?>
+                        </h6>
+                      </div>
+                    </div>
+                    <?php
+                      }
+                    ?>
+
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Creér Votre compte gratuitement</h2>
 
-              <form enctype="multipart/form-data" action="<?=base_url?>validators/signupValidate.php" method="POST" id="signup-for">
+              <form enctype="multipart/form-data" method="POST" id="signup-for">
                 <div class="form-outline mb-4">
                   <label class="form-label" for="nom">Nom</label>
                   <input type="text" id="nom" name="nom" class="form-control form-control-lg" placeholder="Doe" required/>
@@ -34,9 +58,10 @@ include("./root.php");
                   <input type="text" id="prenom" name="prenom" class="form-control form-control-lg" placeholder="John" required />
                 </div>
 
-                <div class="form-outline mb-4">
+                <div class="form-outline mb-4"> <div id="preview"></div>
+
                   <label for="profile">Photo de profile</label>
-                  <input type="file" id="profile" name="profile" accept="image/*" class="form-control form-control-lg" required/>
+                  <input type="file" id="profile" name="fileImg" accept="image/png,jpg,gif,png,jpg,jpeg,PNG,JPG" onchange="previewImage(event)" class="form-control form-control-lg" required/>
                 </div>
 
                 <div  class="form-outline mb-4">
@@ -53,27 +78,22 @@ include("./root.php");
 
                 <div data-mdb-input-init class="form-outline mb-4">
                   <label class="form-label" for="mdp">Mot de passe</label>
-                  <input type="password" id="mdp" name="mdp" class="form-control form-control-lg"  placeholder="********"  />
+                  <input type="text" id="mdp" name="mdp" class="form-control form-control-lg"  placeholder="********"  />
                   <small id="pass1Error" class="form-text text-muted"></small>
                 </div>
 
-                <div  class="form-outline mb-4">
-                  <label class="form-label" for="mdp2">Confirmer le mot de passe</label>
-                  <input type="password" id="mdp2" class="form-control form-control-lg" placeholder="********" />
-                  <small id="passError" class="form-text text-muted"></small>
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <label class="form-label" for="mdp">Confirmation du Mot de passe</label>
+                  <input type="text" id="mdp" name="mdp2" class="form-control form-control-lg"  placeholder="********"  />
+                  <small id="pass1Error" class="form-text text-muted"></small>
                 </div>
-                <div class="col-sm-10 mb-4">
-                  <label for="description" class="form-label">Qui est vous en bref !</label>
-                  <textarea class="form-control" name="intro" style="height: 100px;" placeholder="Qui est vous en bref !" required>
-                  </textarea>
-                </div>
-
+            
                 <div class="d-flex justify-content-center">
-                  <button  type="submit"
+                  <button  type="submit" name="inscription"
                    class="btn btn-primary w-100 btn-lg gradient-custom-4 text-body">Créer Mon compte</button>
                 </div>
 
-                <p class="text-center text-muted mt-5 mb-0">Vous avez deja un compte? <a href="<?=base_url?>login.php"
+                <p class="text-center text-muted mt-5 mb-0">Vous avez deja un compte? <a href="index.php?page=login"
                     class="fw-bold text-body"><u>Connexion ici</u></a></p>
 
               </form>
@@ -86,9 +106,24 @@ include("./root.php");
   </div>
 </section>
 
-<!-- Scripts -->
+<!-- previeu de l'image  -->
+<script>
+  function previewImage(event) {
+      var reader = new FileReader();
+      reader.onload = function(){
+          var output = document.getElementById('preview');
+          output.innerHTML = '<img src="'+ reader.result +'" width="200"/>';
+      };
+      reader.readAsDataURL(event.target.files[0]);
+  }
+</script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<script src="<?= base_url?>public/js/utils.js"></script>
-<script src="<?= base_url?>public/js/signup.js"></script>
+<script>
+      let loginError = document.getElementById("error_login");
+
+      if(loginError) setTimeout(() => {
+        loginError.style.display = 'none';
+      }, 5000);
+</script>
 </body>
 </html>

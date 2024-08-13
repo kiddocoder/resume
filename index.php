@@ -24,6 +24,11 @@
         body {
             font-family: 'Roboto', sans-serif;
         }
+        #search-input{
+            width: 500px;
+            min-width: 250px;
+            margin: auto;
+        }
         #header {
             background: linear-gradient(45deg, #007bff, #6610f2);
             color: white;
@@ -37,6 +42,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            height: 100vh;
         }
         #footer {
             bottom: 0;

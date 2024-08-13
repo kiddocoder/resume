@@ -1,27 +1,5 @@
 <?php
-/*  be sure that the $db global variable is included as well*/
-
-/**
-  * @return object
-*/
-function get_user(){
-    global $db;
-    $req = $db->query("
-        SELECT  *
-        FROM utilisateurs
-        WHERE email ='{$_SESSION['user']}'
-    ");
-
-    $result = $req->fetchObject();
-    return $result;
-}
-
-
-// userID from session
-
-$userdata = get_user();
-$userID = $userdata->uid;
-
+/*  be sure that the $dbconnect global variable is included as well*/
 
 ###############################################
 #         ALL INSERT / POST  METHODS
@@ -35,15 +13,13 @@ $userID = $userdata->uid;
  * @return bool
  */
 function insertIdentity($data) {
-    global $db;
-    global $userID;
+    global $dbconnect;
 
-    $sql = "INSERT INTO `identities`(`uid`, `description`, `telephone`, `birthday`, `pays`, `grade`) VALUES (:id,:description,:telephone,:birthday,:pays,:grade)";
+    $sql = "INSERT INTO `identities`(`description`, `telephone`, `birthday`, `pays`, `grade`) VALUES (:id,:description,:telephone,:birthday,:pays,:grade)";
 
-    $stmt = $db->prepare($sql);
+    $stmt = $dbconnect->prepare($sql);
 
     return $stmt->execute([
-      ':id' =>$userID,
       ':description' => $data['description'],
       ':telephone' => $data['telephone'],
       ':birthday' => $data['birthday'],
@@ -67,14 +43,13 @@ function insertIdentity($data) {
  * @return bool
  */
 function updateIdentity($id, $data) {
-    global $db;
-    global $userID;
+    global $dbconnect;
 
     $sql = "UPDATE identities SET `description` =:description,telephone =:telephone,birthday=:birthday,pays =:pays,grade =:grade WHERE uid = :id";
-    $stmt = $db->prepare($sql);
+    $stmt = $dbconnect->prepare($sql);
 
     return $stmt->execute([
-      ':id' =>$userID,
+      ':id' =>$id,
       ':description' => $data['description'],
       ':telephone' => $data['phone'],
       ':birthday' => $data['birthday'],
@@ -97,10 +72,10 @@ function updateIdentity($id, $data) {
  * @return bool
  */
 function deleteIdentity($id) {
-    global $db;
+    global $dbconnect;
 
     $sql = "DELETE FROM identities WHERE uid = :id";
-    $stmt = $db->prepare($sql);
+    $stmt = $dbconnect->prepare($sql);
 
     return $stmt->execute([':id' => $id]);
 }
@@ -118,7 +93,7 @@ function deleteIdentity($id) {
  * @return array
  */
 function getUserIdentity($id) {
-    global $db;
+    global $dbconnect;
     $data = [];
 
     $sql = "SELECT
@@ -128,7 +103,7 @@ function getUserIdentity($id) {
     FROM identities t
     LEFT JOIN utilisateurs u ON u.uid = t.uid
     WHERE t.uid = :id";
-    $stmt = $db->prepare($sql);
+    $stmt = $dbconnect->prepare($sql);
     $stmt->execute([':id'=>$id]);
     if($stmt->rowCount()>0){
       while($rows = $stmt->fetch(PDO::FETCH_ASSOC)){

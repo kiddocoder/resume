@@ -2,28 +2,6 @@
 /*  be sure that the $db global variable is included as well*/
 
 
-/**
-  * @return object
-*/
-function get_user(){
-    global $db;
-    $req = $db->query("
-        SELECT  *
-        FROM utilisateurs
-        WHERE email ='{$_SESSION['user']}'
-    ");
-
-    $result = $req->fetchObject();
-    return $result;
-}
-
-
-// userID from session
-
-$userdata = get_user();
-$userID = $userdata->uid;
-
-
 ###############################################
 #         ALL INSERT / POST  METHODS
 #
@@ -52,6 +30,7 @@ function insertLanguage($data) {
  * @param array $data from post
  * @return bool
  */
+$userID = $_SESSION['uid'];
 function giveUserlang($data) {
     global $db;
     global $userID;

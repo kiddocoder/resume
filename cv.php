@@ -1,15 +1,20 @@
 <?php
  include("root.php");
  include(Root_path."vendor/autoload.php");
+ include(Root_path."functions/main-functions.php");
+ include_once(Root_path."functions/identities.func.php");
+ include_once(Root_path."functions/languages.func.php");
 
  use App\classes\Session;
 
- session_start();
  $sessions = new Session();
 
  if(!$sessions->checkSession()){
    header("Location:login.php");
+   exit;
  }
+$userdata = getUser();
+$identities = getUserIdentity($_SESSION['uid']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +58,8 @@
     </div>
 
     <a href="index.html" class="logo d-flex align-items-center justify-content-center">
-      <h1 class="sitename">Jonathan Zirhumana</h1>
+      <!-- <h1 class="sitename"><?= $identities['nom'];?> &nbsp; <?= $identities['prenom'];?></h1> -->
+      <?php var_dump($userdata);?>
     </a>
 
     <div class="social-links text-center">

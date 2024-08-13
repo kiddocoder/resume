@@ -22,7 +22,7 @@ class User {
        * @param $password user password
        * @return array
        */
-      function checkUser($email,$password) : array{
+      function checkUser($email,$password){
 
             if (empty($email) && empty($password)) {
                   $data['errorlogin']['message'] = 'Adresse email ou mot de passe invalide.';

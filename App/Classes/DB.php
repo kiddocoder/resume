@@ -20,5 +20,22 @@ class DB{
                   return ['error' => $e->getMessage()];
             }
       }
+
+      function runQuery($sql,$values){
+            $db = new DB();
+            $conn = $db->Connexion();
+
+            $stmt = $conn->prepare($sql);
+            if(is_string($values)){
+              $values = [$values];
+            }
+            $stmt->execute($values);
+            return $stmt;
+      }
+
+      function isUnique($sql,$values){
+            $stmt = $this->runQuery($sql,$values);
+            return $stmt->rowCount() == 0 ;
+      }
 }
 ?>

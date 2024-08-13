@@ -125,7 +125,7 @@ class User {
                 echo "
                 <div class='card container text-white bg-success'>
                     Vous êtes bien inscrit, connectez-vous pour personnaliser votre CV !!!
-                    <script type='text/javascript'> document.location = 'index.php'; </script>
+                    <script type='text/javascript'> document.location = 'login.php'; </script>
                 </div>
                 ";
            }

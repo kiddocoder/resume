@@ -40,6 +40,20 @@
   </li><!-- End Page Nav -->
 
   <li class="nav-item">
+    <a class="nav-link collapsed" href="<?=base_url?>admin/educations.php">
+      <i class="bi bi-newspaper"></i>
+      <span>Educations</span>
+    </a>
+  </li><!-- End  Page Nav -->
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="<?=base_url?>admin/experiences.php">
+      <i class="bi bi-sign-turn-slight-right-fill"></i>
+      <span>Experiences</span>
+    </a>
+  </li><!-- End Page Nav -->
+
+  <li class="nav-item">
     <a class="nav-link collapsed" href="../cv.php">
       <i class="bi bi-person"></i>
       <span>Mon CV</span>

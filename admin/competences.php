@@ -67,7 +67,7 @@ $languesUser[] = getUserLanguage($_SESSION['uid']);// fetch user languages
 
        <div class="report-header justify-content-between mb-5" style="display: flex;">
            <h5 class="card-title">Listes des langues</h5>
-            <button onclick="window.location.href='./forms/add/addstatistics.php'" class="btn btn-primary mt-2">Ajouter une langue </button>
+            <button onclick="window.location.href='./forms/add/addcompetences.php'" class="btn btn-primary mt-2">Ajouter une langue </button>
         </div>
 
         <div class="datatable" style="overflow-x: auto; width: 100%; margin-top: 5px;">

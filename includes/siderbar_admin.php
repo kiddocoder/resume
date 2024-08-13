@@ -26,6 +26,20 @@
   </li><!-- End Page Nav -->
 
   <li class="nav-item">
+    <a class="nav-link collapsed" href="<?=base_url?>admin/statistics.php">
+      <i class="bi bi-sign-turn-slight-right-fill"></i>
+      <span>Statistiques personnel</span>
+    </a>
+  </li><!-- End Page Nav -->
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="<?=base_url?>admin/competences.php">
+      <i class="bi bi-sign-turn-slight-right-fill"></i>
+      <span>Competences personnel</span>
+    </a>
+  </li><!-- End Page Nav -->
+
+  <li class="nav-item">
     <a class="nav-link collapsed" href="../cv.php">
       <i class="bi bi-person"></i>
       <span>Mon CV</span>

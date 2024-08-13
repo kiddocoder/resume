@@ -18,8 +18,8 @@
 */
 function getUser(){
     global $dbconnect;
-    $email = $_SESSION['email'];
-    $req = $dbconnect->query("SELECT  * FROM utilisateurs WHERE email = '.{$email}.'");
+
+    $req = $dbconnect->query("SELECT * FROM utilisateurs WHERE email = '{$_SESSION['email']}'");
 
     $result = $req->fetchObject();
     return $result;

@@ -22,9 +22,9 @@ $identities = getUserIdentity($_SESSION['uid']);
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>CV | Jonathan Zirhumana </title>
+  <title>CV | <?= $userdata->nom;?> &nbsp; <?= $userdata->prenom;?> </title>
   <meta name="description" content="">
-  <meta name="keywords" content="CV,Jonathan Zirhumana">
+  <meta name="keywords" content="CV,<?= $userdata->nom;?> &nbsp; <?= $userdata->prenom;?>">
 
   <!-- Favicons -->
   <link href="<?=base_url;?>public/images/user.png" rel="icon">
@@ -58,8 +58,7 @@ $identities = getUserIdentity($_SESSION['uid']);
     </div>
 
     <a href="index.html" class="logo d-flex align-items-center justify-content-center">
-      <!-- <h1 class="sitename"><?= $identities['nom'];?> &nbsp; <?= $identities['prenom'];?></h1> -->
-      <?php var_dump($userdata);?>
+      <h1 class="sitename"><?= $userdata->nom;?> &nbsp; <?= $userdata->prenom;?></h1>
     </a>
 
     <div class="social-links text-center">
@@ -89,7 +88,7 @@ $identities = getUserIdentity($_SESSION['uid']);
       <img src="<?=base_url;?>public/images/user-cv.jpeg" alt="" data-aos="fade-in">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <h2>Jonathan Zirhumana</h2>
+        <h2><?= $userdata->nom;?> &nbsp; <?= $userdata->prenom;?></h2>
         <p>Je suis  <span>Développeur</span></p>
       </div>
 
@@ -404,7 +403,7 @@ $identities = getUserIdentity($_SESSION['uid']);
       <div class="copyright text-center ">
         <p>© <span>Copyright</span> <strong class="px-1 sitename">CV</strong> Tout droit reservé</p>
         <div class="credits">
-            Crée par <a href="#">Jonathan Zirhumana</a>
+            Crée par <a href="#"><?= $userdata->nom;?> &nbsp; <?= $userdata->prenom;?></a>
           </div>
       </div>
     </div>
